@@ -3,7 +3,7 @@ import scrapy
 from scrapy.http import Request
 from urllib import parse
 import ScrapySpider.items as sp
-from ScrapySpider.ScrapySpider.utils.common import get_md5
+from ScrapySpider.utils.common import get_md5
 import re
 
 
