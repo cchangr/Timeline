@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import datetime
+
 import scrapy
 from scrapy.http import Request
 from urllib import parse
@@ -87,6 +89,12 @@ class JobboleSpider(scrapy.Spider):
 
         article_item['title'] = title
         article_item['url_object_id'] = get_md5(response.url)
+
+        try:
+            create_date = datetime.datetime.strptime(create_date, "%Y/%m/%d").date()
+        except Exception as e:
+            create_date = datetime.datetime.now().date()
+
         article_item['create_date'] = create_date
         article_item['url'] = response.url
         article_item['front_image_url'] = [front_image_url]
