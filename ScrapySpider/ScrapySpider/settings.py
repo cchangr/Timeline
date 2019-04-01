@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for article project
+import os
+
+# Scrapy settings for ScrapySpider project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +11,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'article'
+BOT_NAME = 'ScrapySpider'
 
-SPIDER_MODULES = ['article.spiders']
-NEWSPIDER_MODULE = 'article.spiders'
+SPIDER_MODULES = ['ScrapySpider.spiders']
+NEWSPIDER_MODULE = 'ScrapySpider.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'article (+http://www.yourdomain.com)'
+#USER_AGENT = 'ScrapySpider (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -47,13 +49,13 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'article.middlewares.ArticleSpiderMiddleware': 543,
+#    'ScrapySpider.middlewares.ArticleSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'article.middlewares.ArticleDownloaderMiddleware': 543,
+#    'ScrapySpider.middlewares.ArticleDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -64,9 +66,17 @@ ROBOTSTXT_OBEY = False
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'article.pipelines.ArticlePipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'ScrapySpider.pipelines.ArticlePipeline': 300,
+   # 'scrapy.pipelines.images.ImagesPipeline': 1,
+   'ScrapySpider.pipelines.ArticleImagePipeline': 1,
+}
+IMAGES_URLS_FIELD = "front_image_url"
+project_dir = os.path.abspath(os.path.dirname(__file__))
+IMAGES_STORE = os.path.join(project_dir, 'images')
+
+# IMAGES_MIN_HEIGHT = 100
+# IMAGES_MIN_WIDTH = 100
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
