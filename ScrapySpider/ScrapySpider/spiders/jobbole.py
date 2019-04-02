@@ -28,7 +28,7 @@ class JobboleSpider(scrapy.Spider):
             post_url = post_node.css("::attr(href)").extract_first("")
             yield Request(url=parse.urljoin(response.url, post_url), meta={"front_image_url": image_url},
                           callback=self.parse_detail)
-
+ 
         # 获取下一页的url并交给scrapy进行下载
         next_url = response.css(".next.page-numbers::attr(href)").extract_first("")
         if next_url:
@@ -41,7 +41,7 @@ class JobboleSpider(scrapy.Spider):
         :return:
         """
 
-        article_item = sp.JobBoleArticleItem()
+        # article_item = sp.JobBoleArticleItem()
 
         # 通过xpath提取字段
 

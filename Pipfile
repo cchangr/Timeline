@@ -9,6 +9,8 @@ verify_ssl = true
 scrapy = "*"
 pillow = "*"
 pymysql = "*"
+requests = "*"
+fake-useragent = "*"
 
 [requires]
 python_version = "3.7"
