@@ -118,5 +118,5 @@ class RandomUserAgentMiddleware(object):
     def process_request(self, request, spider):
         def get_ua():
             return getattr(self.ua, self.ua_type)
-        random_agent = get_ua()
         request.headers.setdefault(b'User-Agent', get_ua())
+        # request.meta['proxy'] = 'http://10.10.1.10:3128'
