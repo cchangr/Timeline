@@ -55,15 +55,15 @@ class JsonExporterPipeline(object):
         self.exporter.export_item(item)
         return item
 
-
+  # MYSQL同步操作
 class MysqlPipeline(object):
+
     def __init__(self):
         self.conn = pymysql.connect(host='localhost', user='root', password='', database='spider', port=3306,
                                     use_unicode=True)
         self.cursor = self.conn.cursor()
 
     def process_item(self, item, spider):
-        # MYSQL同步操作
         insert_sql = """
             insert into jobbole_article(title, create_date, url, fav_nums)
             VALUES (%s, %s, %s, %s)

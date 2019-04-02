@@ -12,12 +12,6 @@ from scrapy.loader import ItemLoader
 from scrapy.loader.processors import MapCompose, TakeFirst, Join
 
 
-class ArticleItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
-
-
 def date_convert(value):
     try:
         create_date = datetime.datetime.strptime(value, "%Y/%m/%d").date()
@@ -44,6 +38,12 @@ def remove_comment_tags(value):
 
 def return_value(value):
     return value
+
+
+class ArticleItem(scrapy.Item):
+    # define the fields for your item here like:
+    # name = scrapy.Field()
+    pass
 
 
 class JobBoleArticleItem(scrapy.Item):
