@@ -73,5 +73,15 @@ class JobBoleArticleItem(scrapy.Item):
     content = scrapy.Field()
 
 
+class InvestingCryptoItem(scrapy.Item):
+    crypto_name = scrapy.Field()
+    open = scrapy.Field()
+    high = scrapy.Field()
+    low = scrapy.Field()
+    close = scrapy.Field()
+    volume = scrapy.Field()
+    datetime = scrapy.Field()
+
+
 class ArticleItemLoader(ItemLoader):
     default_output_processor = TakeFirst()

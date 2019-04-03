@@ -12,6 +12,8 @@ pymysql = "*"
 requests = "*"
 fake-useragent = "*"
 selenium = "*"
+scrapy-splash = "*"
+websocket = "*"
 
 [requires]
 python_version = "3.7"
