@@ -7,6 +7,7 @@
 
 from scrapy import signals
 from fake_useragent import UserAgent
+from scrapy.http import HtmlResponse
 
 
 class ArticleSpiderMiddleware(object):
@@ -120,3 +121,14 @@ class RandomUserAgentMiddleware(object):
             return getattr(self.ua, self.ua_type)
         request.headers.setdefault(b'User-Agent', get_ua())
         # request.meta['proxy'] = 'http://10.10.1.10:3128'
+
+class JSPageMiddleware(object):
+
+    def process_request(self, request, spider):
+        if spider.name == "crypto":
+            spider.browser.get(request.url)
+            import time
+            time.sleep(3)
+            print('visit: {}'.format(request.url))
+            return HtmlResponse(url=spider.browser.current_url, body=spider.browser.page_source, encoding='utf-8')
+

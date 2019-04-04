@@ -23,7 +23,7 @@ NEWSPIDER_MODULE = 'ScrapySpider.spiders'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-# CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 5
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -54,8 +54,9 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#     'ScrapySpider.middlewares.RandomUserAgentMiddleware': 543,
-#     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    # 'ScrapySpider.middlewares.JSPageMiddleware': 1,
+    # 'ScrapySpider.middlewares.RandomUserAgentMiddleware': 543,
+    # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
 # }
 
 # Enable or disable extensions
@@ -115,22 +116,22 @@ USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36
 RANDOM_UA_TYPE = 'random'
 
 
-# 渲染服务的url
-SPLASH_URL = 'http://0.0.0.0:8050'
+#渲染服务的url
+SPLASH_URL = 'http://127.0.0.1:8050'
 
-# 去重过滤器
-#
+#去重过滤器
+
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
-#
-# 使用Splash的Http缓存
+
+#使用Splash的Http缓存
 HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
-#
+
 SPIDER_MIDDLEWARES = {
     'scrapy_splash.SplashDeduplicateArgsMiddleware': 100,
 }
-#
-# #下载器中间件
-#
+
+#下载器中间件
+
 DOWNLOADER_MIDDLEWARES = {
     'scrapy_splash.SplashCookiesMiddleware': 723,
     'scrapy_splash.SplashMiddleware': 725,
