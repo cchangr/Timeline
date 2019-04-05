@@ -30,7 +30,7 @@ class InvestingSpider(scrapy.Spider):
         for url in self.start_urls:
             # 通过SplashRequest请求等待1秒
             while True:
-                yield SplashRequest(url, cache_args=url,callback=self.parse, endpoint='execute', args={'timeout': 90, 'lua_source': script, 'wait': 1}, dont_filter=True, dont_send_headers=True, dont_process_response=True)
+                yield SplashRequest(url, cache_args=url,callback=self.parse, endpoint='execute', args={'timeout': 90, 'lua_source': script, 'wait': 1}, dont_filter=True, dont_send_headers=True)
 
 
     def parse(self, response):
